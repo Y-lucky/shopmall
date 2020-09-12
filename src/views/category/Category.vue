@@ -114,7 +114,7 @@ import { getcategoryList, getcategoryGoods, getCategoryDetail} from '../../netwo
   
   .scroll-height{
     flex: 1;
-    /* height: calc(100% - 44px - 49px); */
+    height: calc(100% - 44px - 49px);
     overflow: hidden;
     /* word-break: break-all; */
     width: calc(100% - 25%);

@@ -31,7 +31,7 @@ export default {
         return this.$store.state.cartList.length
       }
     },
-    activaed(){
+    activted(){
       // 重新刷新购物车页面
       this.$refs.scroll.refresh()
     }
@@ -52,7 +52,7 @@ export default {
 .content{
   height: calc(100% - 44px - 49px - 50px);
   overflow: hidden;
+  
 }
-
 
 </style>

@@ -6,7 +6,7 @@
      <div class="cart-context">
         <img :src="product.image" alt="">
      </div>   
-       <div class="product-title">
+       <div class="product-title" @click="productClick">
             <h3>{{product.title}}</h3>
             <p>{{product.desc}}</p>
             <span class="p-price">{{product.price | Pricefilter}}</span>
@@ -36,6 +36,9 @@ export default {
         chekedClick(){
             // checked是对象模型  在mutations里面
             this.product.checked = !this.product.checked
+        },
+        productClick(){
+            this.$router.push('/detail/'+this.product.iid)
         }
     },
     computeds:{

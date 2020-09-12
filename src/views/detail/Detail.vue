@@ -68,7 +68,7 @@ export default {
         this.iid=this.$route.params.iid
 
         getDetail(this.iid).then(res=>{
-            console.log(res);
+            // console.log(res);
             const data = res.result;
             // 1. 获取顶部图片轮播图的数据
             this.topImages= data.itemInfo.topImages
@@ -92,7 +92,7 @@ export default {
         })
         getRecommends().then(res=>{
             // 请求推荐商品
-            console.log(res);
+            // console.log(res);
             this.recommends = res.data.list
         })
 

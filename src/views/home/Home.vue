@@ -53,8 +53,8 @@ export default {
         currentType: 'pop',
         isShowbackTop: false,
         tabOffsetTop:0,
-        isTabFixed:false,
-        saveY:0
+        isTabFixed: false,
+        saveY: 0
       }
     },
     computed:{
@@ -122,7 +122,6 @@ export default {
               this.banners=res.data.banner.list;
               // console.log(res.data.banner.list);
               this.recommends=res.data.recommend.list;
-            
             })
      },
      getHomeGoods(type){

@@ -39,6 +39,7 @@ name:"DetailBottomBar",
     position: relative;
     /* bottom: 49px; */
     display: flex;
+    z-index: 99;
 }
 
 .bottom-item{
