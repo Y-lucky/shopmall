@@ -38,7 +38,7 @@ const routes = [{
 
 const router = new VueRouter({
     routes,
-    mode: 'history'
+    // mode: 'history' 在npm run build 之后要把这个注释掉，不然网页上的路径显示不出来
 })
 
 export default router

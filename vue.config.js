@@ -1,35 +1,133 @@
-//vue.config.js  常用配置
 module.exports = {
-    //基本路径，vue.cli 3.3以前请使用baseUrl
-    publicPath: '',
-    //输出文件目录
-    outputDir: 'dist',
-    //用于嵌套生产的静态资产（js,css,img,fonts）的目录
-    assetsDir: '',
-    //生产环境sourceMap
+
+    /* 部署应用包的基本URL */
+    /* baseUrl 从 Vue CLI 3.3 起已弃用 ，请使用publicPath */
+    //  baseUrl: process.env.NODE_ENV === "production" ? "./" : "./",
+    publicPath: "./", //用法和webpack本身的output.publickPath用法一致
+
+    /* 生产环境构建文件的目录 defalut: dist */
+
+    outputDir: "dist",
+
+    /* 放置生成的静态文件目录（js css img） */
+
+    assetsDir: "static",
+
+    /* 指定生成的index.html 输出路径 相对 default: index.html */
+
+    indexPath: "index.html",
+
+    /* 指定生成文件名中包含hash default: true */
+
+    filenameHashing: true,
+
+    /* 多页模式下 */
+
+    /* pages: {
+  
+      index: {
+  
+        // page 的入口
+  
+        entry: "src/index/main.js",
+  
+        // 模板来源
+  
+        template: "public/index.html",
+  
+        // 在 dist/index.html 的输出
+  
+        filename: "index.html",
+  
+        // 当使用 title 选项时，
+  
+        // template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
+  
+        // title: "Index Page",
+  
+        // 在这个页面中包含的块，默认情况下会包含
+  
+        // 提取出来的通用 chunk 和 vendor chunk。
+  
+        chunks: ["chunk-vendors", "chunk-common", "index"]
+  
+      },
+  
+      // 当使用只有入口的字符串格式时，
+  
+      // 模板会被推导为 `public/subpage.html`
+  
+      // 并且如果找不到的话，就回退到 `public/index.html`。
+  
+      // 输出文件名会被推导为 `subpage.html`。
+  
+      // subpage: "src/subpage/main.js"
+  
+    } */
+
+    /* 是否保存时 lint 代码 */
+
+    lintOnSave: process.env.NODE_ENV === "production",
+
+    /* 是否使用编译器 default: false */
+
+    runtimeCompiler: false,
+
+    /* 默认babel-loader会忽略node_modules中的文件，你想显示的话在这个选项中列出来 */
+
+    // transpileDependencies: [],
+
+    /* 生产环境的source map */
+
     productionSourceMap: true,
-    //webpack配置
-    configureWebpack: () => {},
-    chainWebpack: () => {},
-    //css相关配置
+
+    // crossorigin: "",
+
+    integrity: false,
+
+    configureWebpack: {
+        resolve: {
+            alias: {
+                'assets': '@/assets',
+                'components': '@/components',
+                'views': '@/views',
+            }
+        }
+    },
+
+    // css相关配置
+
     css: {
-        //启用长沙市modulesmodules
-        modules: false,
-        //是否启用css分离插件
-        extract: true,
-        //开启css source maps
-        sourceMap: false,
-        //css预设器配置项
-        loaderOptions: {},
+        extract: process.env.NODE_ENV === 'production' ? {
+            ignoreOrder: true,
+        } : false,
     },
-    //webpack-dev-server相关配置
+
     devServer: {
-        host: '0,0,0,0',
+
         port: 8080,
-        proxy: {}, //设置代理
-    },
-    //第三方插件配置
-    pluginOptions: {
-        //.......
+
+        host: "0.0.0.0",
+
+        https: false,
+
+        // 自动启动浏览器
+
+        open: false,
+
+        proxy: {
+            "/api": {
+                //代理路径 例如 https://baidu.com
+                target: "https://baidu.com",
+                // 将主机标头的原点更改为目标URL
+                changeOrigin: true,
+                ws: true,
+                pathRewrite: {
+                    "^/api": ""
+                }
+            }
+        }
+
     }
-}
+
+};
